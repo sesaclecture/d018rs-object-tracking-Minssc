@@ -79,14 +79,14 @@ def update_trackbar_positions():
 
 
 def find_biggest_contour(mask):
-    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     if len(contours):
         return max(contours, key=cv2.contourArea)
 
 
 def draw_boundingbox(image, contour):
     x, y, w, h = cv2.boundingRect(contour)
-    cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 2)
+    cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
     cv2.putText(image, f'Rect: ({x} {y} {w} {h})', (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
 
 
